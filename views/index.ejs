@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>employees</title>
+</head>
+<body>
+    <h1>All Katara employee records</h1>
+    <form method="get" action="/employees/new">
+        <button>Add New</button>
+    </form>
+   <% for(let employee of allEmployees) { %>
+    <div class="employee">
+        <p>name: <%= employee.name %></p>
+        <p>email: <%= employee.email %></p>
+        <p>Designation: <%= employee.designation %></p>
+        <p>Date: <%= employee.joining_date.toString().split(" ").splice(0, 5) %></p>  
+        <form method="get"  action="/employees/<%= employee._id %>/edit">
+            <button>Edit</button>
+        </form>  
+        <form method="post"  action="/employees/<%= employee._id %>?_method=DELETE">
+            <button id="deletebtn">Delete</button>
+        </form> 
+    </div>
+        <hr>
+
+ <%   } %>
+
+ <script src="/app.js"></script>
+</body>
+</html>
